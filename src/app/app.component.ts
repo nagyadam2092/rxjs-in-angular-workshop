@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { interval } from 'rxjs';
 import { filter } from 'rxjs/internal/operators/filter';
-import { map, take } from 'rxjs/operators';
+import { map, take, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -15,5 +15,6 @@ export class AppComponent {
         .pipe(
             filter(elem => elem % 2 === 0),
             map(elem => elem * 10),
+            filter(elem => elem < 100)
         );
 }
