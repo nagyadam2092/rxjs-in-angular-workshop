@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { interval, of } from 'rxjs';
 import { tap } from 'rxjs/internal/operators/tap';
 import { map } from 'rxjs/operators';

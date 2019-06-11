@@ -1,0 +1,5 @@
+<pre>{{person | json}}</pre>
+<div *ngIf="person?.isActive">
+    <img [src]="person?.picture">
+    {{person?.name.first}} {{person?.name.last}}
+</div>

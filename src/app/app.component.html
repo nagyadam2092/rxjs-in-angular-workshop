@@ -8,6 +8,6 @@
 <h4>Given an Observable which emits a person every second. Display the people who are active (isActive = true). Display the picture of the person and the full name (first and last name) next to the picture.</h4>
 
 
-<pre>{{people$ | async | json}}</pre>
+<app-person [person]="people$ | async"></app-person>
 
 <router-outlet></router-outlet>
