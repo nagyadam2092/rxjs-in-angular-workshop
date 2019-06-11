@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 @Component({
@@ -10,6 +10,7 @@ import { timer } from 'rxjs';
 })
 export class AppComponent {
     title = 'angular-rxjs-workshop';
+    quote = '';
 
     constructor(private httpClient: HttpClient) {
     }
@@ -24,5 +25,14 @@ export class AppComponent {
                     )
             ));
 
-    character$;
+    character$ = timer(0, 1000)
+        .pipe(
+            withLatestFrom(this.kanye$),
+            map(([seconds, quote]) => {
+                console.log('seconds', seconds);
+                console.log('quote', quote);
+                this.quote = quote;
+                return quote[seconds % quote.length];
+            })
+        );
 }
