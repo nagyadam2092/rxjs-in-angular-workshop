@@ -11,5 +11,12 @@ export class AppComponent {
     title = 'angular-rxjs-workshop';
     even = null;
 
-    source$ = interval(1000);
+    source$ = interval(1000)
+        .pipe(
+            tap(number => {
+                if (number % 2 === 0) {
+                    this.even = number;
+                }
+            })
+        );
 }
