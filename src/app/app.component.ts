@@ -13,9 +13,7 @@ export class AppComponent {
 
     source$ = interval(1000)
         .pipe(
-            take(3),
             filter(elem => elem % 2 === 0),
             map(elem => elem * 10),
-            // take(3)
         );
 }
