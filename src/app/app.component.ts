@@ -13,12 +13,16 @@ export class AppComponent {
 
     constructor(private httpClient: HttpClient) {
     }
+
     kanye$ = timer(0, 5000)
-        .pipe(switchMap(
-            _ => this.httpClient
-                .get('https://api.kanye.rest')
-                .pipe(
-                    map(kanye => kanye.quote)
-                )
-        ));
+        .pipe(
+            switchMap(
+                _ => this.httpClient
+                    .get('https://api.kanye.rest')
+                    .pipe(
+                        map(kanye => kanye.quote)
+                    )
+            ));
+
+    character$;
 }
