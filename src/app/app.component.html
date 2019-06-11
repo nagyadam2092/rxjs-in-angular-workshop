@@ -7,7 +7,10 @@
 </div>
 <h4>Given an Observable which emits a person every second. Display the people who are active (isActive = true). Display the picture of the person and the full name (first and last name) next to the picture.</h4>
 
-
 <pre>{{people$ | async | json}}</pre>
+<div *ngIf="(people$ | async)?.isActive">
+    <img [src]="(people$ | async)?.picture">
+    {{(people$ | async)?.name.first}} {{(people$ | async)?.name.last}}
+</div>
 
 <router-outlet></router-outlet>

@@ -167,7 +167,8 @@ const people = [
 export class AppComponent {
     title = 'angular-rxjs-workshop';
 
-    people$ = interval(1000).pipe(
-        map(_ => people[Math.floor(Math.random() * people.length)])
+    people$ = interval(3000).pipe(
+        map(_ => people[Math.floor(Math.random() * people.length)]),
+        tap(console.log)
     );
 }
