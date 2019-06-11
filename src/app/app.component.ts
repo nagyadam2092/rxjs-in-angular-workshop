@@ -15,6 +15,8 @@ export class AppComponent {
         const arr = this.input.split(',').map(elem => +elem);
 
         // your solution here
-        this.result = arr;
+        this.result = arr
+            .filter(elem => elem % 2 === 0)
+            .map(elem => elem * 10);
     }
 }
