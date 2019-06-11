@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -8,15 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
     title = 'angular-rxjs-workshop';
 
-    result: Array<number>;
-    input: string;
-
-    solution() {
-        const arr = this.input.split(',').map(elem => +elem);
-
-        // your solution here
-        this.result = arr
-            .filter(elem => elem % 2 === 0)
-            .map(elem => elem * 10);
-    }
+    source$ = interval(1000);
 }
