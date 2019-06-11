@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { interval } from 'rxjs';
-import { filter } from 'rxjs/internal/operators/filter';
-import { map, take, takeUntil } from 'rxjs/operators';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
     selector: 'app-root',
@@ -10,11 +9,7 @@ import { map, take, takeUntil } from 'rxjs/operators';
 })
 export class AppComponent {
     title = 'angular-rxjs-workshop';
+    even = null;
 
-    source$ = interval(1000)
-        .pipe(
-            filter(elem => elem % 2 === 0),
-            map(elem => elem * 10),
-            filter(elem => elem < 100)
-        );
+    source$ = interval(1000);
 }
