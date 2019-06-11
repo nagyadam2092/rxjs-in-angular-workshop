@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -11,5 +12,10 @@ export class AppComponent {
 
     constructor(private httpClient: HttpClient) {
     }
-    kanye$;
+    kanye$ = this
+        .httpClient
+        .get('https://api.kanye.rest')
+        .pipe(
+            map(kanye => kanye.quote)
+        );
 }
