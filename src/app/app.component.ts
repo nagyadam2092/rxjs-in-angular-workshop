@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { interval } from 'rxjs';
 import { filter } from 'rxjs/internal/operators/filter';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +13,9 @@ export class AppComponent {
 
     source$ = interval(1000)
         .pipe(
+            take(3),
             filter(elem => elem % 2 === 0),
-            map(elem => elem * 10)
+            map(elem => elem * 10),
+            // take(3)
         );
 }
