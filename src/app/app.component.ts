@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -12,10 +13,12 @@ export class AppComponent {
 
     constructor(private httpClient: HttpClient) {
     }
-    kanye$ = this
-        .httpClient
-        .get('https://api.kanye.rest')
-        .pipe(
-            map(kanye => kanye.quote)
-        );
+    kanye$ = timer(0, 5000)
+        .pipe(switchMap(
+            _ => this.httpClient
+                .get('https://api.kanye.rest')
+                .pipe(
+                    map(kanye => kanye.quote)
+                )
+        ));
 }
